@@ -88,11 +88,10 @@
           <xsl:value-of select="Person/Nationality/@code" /><xsl:value-of select="$delim" />
           <xsl:text>0</xsl:text><xsl:value-of select="$delim" />
           <xsl:value-of select="$qout" /><xsl:value-of select="../Class/Id" /><xsl:value-of select="$qout" /><xsl:value-of select="$delim" />
-    	  
           <xsl:value-of select="$qout" /><xsl:value-of select="../Class/Id" /><xsl:value-of select="$qout" /><xsl:value-of select="$delim" />
           <xsl:value-of select="$delim" />
-    	    <xsl:value-of select="$delim" />
-    	    <xsl:value-of select="$delim" />
+          <xsl:value-of select="$delim" />
+          <xsl:value-of select="$delim" />
           <xsl:text>""</xsl:text><xsl:value-of select="$delim" />
           <xsl:text>""</xsl:text><xsl:value-of select="$delim" />
           <xsl:text>""</xsl:text><xsl:value-of select="$delim" />
