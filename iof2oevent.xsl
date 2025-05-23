@@ -32,6 +32,7 @@
     <xsl:text>Num1</xsl:text><xsl:value-of select="$delim" />
     <xsl:text>Num2</xsl:text><xsl:value-of select="$delim" />
     <xsl:text>Num3</xsl:text><xsl:value-of select="$delim" />
+    <xsl:text>Text1</xsl:text><xsl:value-of select="$delim" />
     <xsl:text>Text2</xsl:text><xsl:value-of select="$delim" />
     <xsl:text>Text3</xsl:text><xsl:value-of select="$delim" />
     <xsl:text>Adr. name</xsl:text><xsl:value-of select="$delim" />
@@ -64,31 +65,31 @@
     <xsl:text>Punch4</xsl:text><xsl:value-of select="$delim" />
     <xsl:text>Control5</xsl:text><xsl:value-of select="$delim" />
     <xsl:text>Punch5</xsl:text><xsl:value-of select="$delim" />
-    <xsl:text>(may be more) ...</xsl:text>	
+    <xsl:text>(may be more) ...</xsl:text>    
     <xsl:value-of select="$nl" />
 
     <xsl:for-each select="ResultList/ClassResult/PersonResult">
         <xsl:if test="Person/Name/Family!='Vakant'">
           <xsl:value-of select="Result/BibNumber" /><xsl:value-of select="$delim" />
           <xsl:value-of select="Result/ControlCard" /><xsl:value-of select="$delim" />
-          <xsl:value-of select="$delim" />
+          <xsl:value-of select="$qout" /><xsl:value-of select="$qout" /><xsl:value-of select="$delim" />
           <xsl:value-of select="concat($qout,Person/Name/Family,$qout)" /><xsl:value-of select="$delim" />
           <xsl:value-of select="concat($qout,Person/Name/Given,$qout)" /><xsl:value-of select="$delim" />
           <xsl:value-of select="$delim" />
           <xsl:value-of select="$delim" />
           <xsl:value-of select="$delim" />
           <xsl:text>0</xsl:text><xsl:value-of select="$delim" />
-          <xsl:text>0</xsl:text><xsl:value-of select="$delim" />
-          <xsl:text>0</xsl:text><xsl:value-of select="$delim" />
+          <xsl:value-of select="substring(Result/StartTime, 15, 5)" /><xsl:value-of select="$delim" />
+          <xsl:value-of select="substring(Result/FinishTime, 15, 5)" /><xsl:value-of select="$delim" />
           <xsl:call-template name="secToMinSec"><xsl:with-param name="durationSeconds" select="Result/Time" /></xsl:call-template><xsl:value-of select="$delim" />
           <xsl:call-template name="status"><xsl:with-param name="status" select="Result/Status" /></xsl:call-template><xsl:value-of select="$delim" />
           <xsl:value-of select="Organisation/Id" /><xsl:value-of select="$delim" />
           <xsl:value-of select="concat($qout,Organisation/Name,$qout)" /><xsl:value-of select="$delim" />
           <xsl:value-of select="concat($qout,Organisation/Name,$qout)" /><xsl:value-of select="$delim" />
-          <xsl:value-of select="Person/Nationality/@code" /><xsl:value-of select="$delim" />
+          <xsl:value-of select="$qout" /><xsl:value-of select="Person/Nationality/@code" /><xsl:value-of select="$qout" /><xsl:value-of select="$delim" />
           <xsl:text>0</xsl:text><xsl:value-of select="$delim" />
-          <xsl:value-of select="$qout" /><xsl:value-of select="../Class/Id" /><xsl:value-of select="$qout" /><xsl:value-of select="$delim" />
-          <xsl:value-of select="$qout" /><xsl:value-of select="../Class/Id" /><xsl:value-of select="$qout" /><xsl:value-of select="$delim" />
+          <xsl:value-of select="$qout" /><xsl:value-of select="../Class/Name" /><xsl:value-of select="$qout" /><xsl:value-of select="$delim" />
+          <xsl:value-of select="$qout" /><xsl:value-of select="../Class/Name" /><xsl:value-of select="$qout" /><xsl:value-of select="$delim" />
           <xsl:value-of select="$delim" />
           <xsl:value-of select="$delim" />
           <xsl:value-of select="$delim" />
@@ -111,6 +112,7 @@
           <xsl:text>""</xsl:text><xsl:value-of select="$delim" />
           <xsl:text>""</xsl:text><xsl:value-of select="$delim" />
           <xsl:text>""</xsl:text><xsl:value-of select="$delim" />
+          <xsl:value-of select="count(Result/SplitTime)" /><xsl:value-of select="$delim" />  
           <xsl:value-of select="Result/Position" /><xsl:value-of select="$delim" />
           
           <xsl:value-of select="$delim" />    
@@ -138,7 +140,7 @@
     <xsl:variable name="seconds" select="$durationSeconds mod 60" />
     <xsl:value-of select="$minutes" /><xsl:value-of select="format-number($seconds, ':00')" />
   </xsl:template>
-
+  
   <xsl:template name="status">
     <xsl:param name="status"/>
     <xsl:choose>
